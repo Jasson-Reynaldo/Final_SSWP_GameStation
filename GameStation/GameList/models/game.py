@@ -13,7 +13,7 @@ class Game(models.Model):
     offical_web = models.OneToOneField(Official_web, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=20,decimal_places=2)
     platform = models.ManyToManyField(Platform)
-    rating = models.DecimalField(max_digits=4,decimal_places=2, null=true, blank=true)
+    rating = models.DecimalField(max_digits=4,decimal_places=2, null=True, blank=True)
     date_published = models.DateField()
     description = models.TextField(max_length=1000)
 

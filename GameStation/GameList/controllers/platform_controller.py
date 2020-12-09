@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from GameList.models.game import Game
+from GameList.models.platform import Platform
 
 def index(request):
     if request.method == 'POST':
@@ -8,13 +8,13 @@ def index(request):
         choice = search['choice']
         platforms = Platform.objects.all()
         if name and choice:
-            if choice == 'name'
+            if choice == 'name':
                 platforms = platforms.filter(name__contains=name)
-            elif choice == 'creator'
+            elif choice == 'creator':
                 platforms = platforms.filter(creator__contains=name)  
     else:
-        games = Game.objects.all()
+        platforms = Platform.objects.all()
     data = {
-        'games': games,
+        'platforms': platforms,
     }
-    return render(request, 'game/index.html', context=data)
+    return render(request, 'platforms/index.html', context=data)
