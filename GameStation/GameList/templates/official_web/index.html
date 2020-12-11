@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>
+    Official Web Page
+</title>
+{% endblock %}
+
+{% block content %}
+<h3>Official Web Page</h3>
+<div class="col-12">
+    <table class="table table-sm table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <td>Name</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for official_web in official_webs %}
+            <tr>
+                <td>{{ official_web.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form method="post" action="">
+        {% csrf_token %}
+        <input name="name" type="text"/>
+        <button type="submit">Search</button>
+    </form>
+</div>
+{% endblock %}

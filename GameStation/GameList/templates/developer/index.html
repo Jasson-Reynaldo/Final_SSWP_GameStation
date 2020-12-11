@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>
+    Developer Page
+</title>
+{% endblock %}
+
+{% block content %}
+<h3>Developer Page</h3>
+<div class="col-12">
+    <table class="table table-striped table-sm table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <td>Nickname</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Date of Birth</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for developer in developers %}
+            <tr>
+                <td>{{ developer.nick_name }}</td>
+                <td>{{ developer.first_name }}</td>
+                <td>{{ developer.last_name }}</td>
+                <td>{{ developer.date_of_birth }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form method="post" action="">
+        {% csrf_token %}
+        <div>
+            <select name="choice" id="choice">
+                <option value="nick_name">Nickname</option>
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+            </select>
+            <input name="name" type="text" />
+            <button type="submit">Search</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

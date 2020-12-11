@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Platform Page</title>{% endblock %}
+
+{% block content %}
+<h3> Platform Page </h3>
+<div class="col-12">
+    <form method="post" action="">
+        {% csrf_token %}
+        <table class="table table-striped table-sm table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <td>Platform Name</td>
+                    <td>Creator Name</td>
+                </tr>
+            </thead>
+            <div class="row row-cols-1 row-cols-md-2">
+                {% for platform in page_obj %}
+                <tr>
+                    <td>{{ platform }}</td>
+                    <td>{{ platform.creator }}</td>
+                </tr>
+                {% endfor %}
+            </div>
+        </table>
+        <div>
+            <select name="choice" id="choice">
+                <option value="plat">Platform Name</option>
+                <option value="creator">Creator Name</option>
+            </select>
+            <input name="name" type="text" />
+            <button type="submit">Search</button>
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; First</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+    
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+    
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+
