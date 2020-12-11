@@ -1,6 +1,6 @@
 from django.db import models
 
-class Official_Web(models.Model):
+class Official_web(models.Model):
     name = models.CharField(max_length=200)
 
     class meta:

@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from GameList.models.official_web import Official_Web
+from GameList.models.official_web import Official_web
 
 def index(request):
     if request.method == 'POST':
         search = request.POST.dict()
         name = search['name']
-        official_webs = Official_Web.objects.filter(name__contains=name)
+        official_webs = Official_web.objects.filter(name__contains=name)
     else:
-        official_webs = Official_Web.objects.all()  
+        official_webs = Official_web.objects.all()  
     data = {
         'official_webs': official_webs,
     }
