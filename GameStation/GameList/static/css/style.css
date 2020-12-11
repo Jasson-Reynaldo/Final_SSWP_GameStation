@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Niramit&family=Pacifico&display=swap');
+.jumbotop{
+    margin-bottom: 0px;
+    padding: 15px;
+    height: 160px;
+}
+.navtop{
+    font-family: 'Niramit', sans-serif;
+}
+
+.jumbotext{
+    font-family: 'Niramit', sans-serif;
+    line-height: 1.5;
+    margin-bottom: 0px;
+}
+
+.lead{
+    line-height: 0;
+}
