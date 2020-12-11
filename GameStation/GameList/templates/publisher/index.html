@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Platform Page</title>{% endblock %}
+
+{% block content %}
+
+<h3> Publisher Page </h3>
+<div class="col-12">
+    <form method="post" action="">
+    {% csrf_token %}
+    <table class="table table-striped table-sm table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <td>Publisher Name</td>
+                <td>Founder Name</td>
+                <td>Founded Date</td>
+                <td>HQ City</td>
+                <td>HQ Country</td>
+            </tr>
+        </thead>
+        <div class="row row-cols-5 row-cols-md-2">
+            {% for publisher in page_obj %}
+            <tr>
+                <td>{{ publisher }}</td>
+                <td>{{ publisher.founder_name }}</td>
+                <td>{{ publisher.founded_date }}</td>
+                <td>{{ publisher.HQ_city }}</td>
+                <td>{{ publisher.HQ_country }}</td>
+            </tr>
+            {% endfor %}
+        </div>
+    </table>
+    <div>
+        <select name="choice" id="choice">
+            <option value="name">Publisher Name</option>
+            <option value="founder_name">Founder Name</option>
+            <option value="hq_country">Headquarters Country</option>
+        </select>
+        <input name="name" type="text" />
+        <button type="submit">Search</button>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; First</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</form>
+</div>
+{% endblock %}
