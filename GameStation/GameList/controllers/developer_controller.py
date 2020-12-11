@@ -8,10 +8,12 @@ def index(request):
         choice = search['choice']
         developers = Developer.objects.all()
         if name and choice:
-            if choice == 'first_name':
+            if choice == 'nick_name':
+                developers = developers.filter(nick_name__contains=name)
+            elif choice == 'first_name':
                 developers = developers.filter(first_name__contains=name)
             elif choice == 'last_name':
-                developers = developers.filter(last_name__contains=name)
+                developers = developers.filter(last_name__contains=name) 
     else:
         developers = Developer.objects.all()  
     data = {
