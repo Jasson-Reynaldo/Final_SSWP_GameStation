@@ -16,19 +16,18 @@
         <div class="jumbotron jumbotron-fluid bg-dark text-white jumbotop">
             <div class="container text-center">
               <h1 class="display-4">
-                <a class="navbar-brand text-white" href="{% url 'topping_index' %}">
+                <a class="navbar-brand text-white" href="#">
                     <h1 class="display-4 jumbotext"><img src={% static 'images/LogoTop.png' %} width="90" height="90" class="d-inline-block align-top" alt="" loading="lazy"> GameStation</h1>
                 </a>
               </h1>
-              <p class="lead">Welcome Gamers</p>
             </div>
         </div>
         <ul class="nav justify-content-center bg-dark navtop">
             <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'pizza_index' %}">Game</a>
+              <a class="nav-link text-white" href="#">Game</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'topping_index' %}">Genre</a>
+              <a class="nav-link text-white" href="#">Genre</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">Developer</a>
@@ -45,6 +44,7 @@
 
         </ul>
     </div>
+    
 <div class="container-xl">
   {% block content %}{% endblock %}
 </div>

@@ -8,4 +8,4 @@ class Publisher(models.Model):
         app_label = 'GameList'
         
     def __str__(self):
-        return self.nam
+        return self.name
