@@ -16,30 +16,33 @@
         <div class="jumbotron jumbotron-fluid bg-dark text-white jumbotop">
             <div class="container text-center">
               <h1 class="display-4">
-                <a class="navbar-brand text-white" href="#">
+                <a class="navbar-brand text-white" href="{% url 'home_index' %}">
                     <h1 class="display-4 jumbotext"><img src={% static 'images/LogoTop.png' %} width="90" height="90" class="d-inline-block align-top" alt="" loading="lazy"> GameStation</h1>
                 </a>
               </h1>
             </div>
         </div>
         <ul class="nav justify-content-center bg-dark navtop">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'home_index' %}">Home</a>
+          </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="{% url 'game_index' %}">Game</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'genre_index %}'">Genre</a>
+              <a class="nav-link text-white" href="{% url 'genre_index' %}">Genre</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="{% url 'developer_index %}">Developer</a>
+              <a class="nav-link text-white" href="{% url 'developer_index'%}">Developer</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'publisher_index %}">Publisher</a>
+                <a class="nav-link text-white" href="{% url 'publisher_index' %}">Publisher</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{% url 'platform_index' %}">Platform</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="{% url 'official_web_index %}">Official Web</a>
+                <a class="nav-link text-white" href="{% url 'official_web_index' %}">Official Web</a>
             </li>
 
         </ul>
