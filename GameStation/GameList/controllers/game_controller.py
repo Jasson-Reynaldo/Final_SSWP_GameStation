@@ -5,6 +5,7 @@ from django.forms.models import model_to_dict
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from GameList.forms.game import GameForm
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     if request.method == 'POST':
@@ -49,6 +50,7 @@ def index(request):
     }
     return render(request, 'game/index.html', data)
 
+@login_required
 def add_game(request):
     if request.method == 'POST':
         form = GameForm(request.POST)
@@ -63,6 +65,7 @@ def add_game(request):
     }
     return render(request, 'game/game_form.html', context=context)
 
+@login_required
 def edit_game(request, game_id):
     if request.method == 'POST':
         game = Game.objects.get(pk=game_id)
@@ -80,6 +83,7 @@ def edit_game(request, game_id):
     }
     return render(request, 'game/game_form.html', context=context)
 
+@login_required
 def delete_game(request, game_id):
     game = Game.objects.get(pk=game_id)
     if request.method == 'POST':
