@@ -10,6 +10,7 @@
         <div style="padding: 1%; padding-left: 0%;">
             <input name="name" type="text" />
             <button type="submit">Search</button>
+            <p><a href="{% url 'add_genre' %}">Add Genre</a></p>
         </div>
         <div class="row row-cols-1 row-cols-md-3">
             {% for genre in page_obj %}
@@ -18,6 +19,9 @@
                     <div class="card-header text-center bg-dark text-white" style="height: 120px; padding-top: 35px;"><h3>{{ genre }}</h1></div>
                   <div class="card-body">
                     <p class="card-text">Description : {{ genre.description }}</p>
+                  </div>
+                  <div class="card-footer">
+                    <p><a href="{% url 'edit_genre' genre.id %}">Edit</a> - <a href="{% url 'delete_genre' genre.id %}">Delete</a></p>
                   </div>
               </div>
             </div> 

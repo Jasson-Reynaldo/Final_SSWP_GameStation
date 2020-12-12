@@ -16,9 +16,10 @@
                 <td>Founded Date</td>
                 <td>HQ City</td>
                 <td>HQ Country</td>
+                <td>Action</td>
             </tr>
         </thead>
-        <div class="row row-cols-5 row-cols-md-2">
+        <div class="row row-cols-6 row-cols-md-2">
             {% for publisher in page_obj %}
             <tr>
                 <td>{{ publisher }}</td>
@@ -26,6 +27,7 @@
                 <td>{{ publisher.founded_date }}</td>
                 <td>{{ publisher.HQ_city }}</td>
                 <td>{{ publisher.HQ_country }}</td>
+                <td><a href="{% url 'edit_publisher' publisher.id %}">Edit</a> - <a href="{% url 'delete_publisher' publisher.id %}">Delete</a></td>
             </tr>
             {% endfor %}
         </div>
@@ -38,6 +40,7 @@
         </select>
         <input name="name" type="text" />
         <button type="submit">Search</button>
+        <p><a href="{% url 'add_publisher' %}">Add Publisher</a></p>
     </div>
     <div class="pagination">
         <span class="step-links">
