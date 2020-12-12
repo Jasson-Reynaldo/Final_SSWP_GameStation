@@ -6,6 +6,7 @@ from django.urls import reverse
 from GameList.forms.developer import DeveloperForm
 from django.contrib.auth.decorators import login_required
 import requests
+
 def index(request):
     if request.method == 'POST':
         search = request.POST.dict()
@@ -27,6 +28,7 @@ def index(request):
 
     return render(request, 'developer/index.html', context=data)
 
+@login_required
 def add_developer(request):
     if request.method == 'POST':
         form = DeveloperForm(request.POST)
@@ -41,6 +43,7 @@ def add_developer(request):
     }
     return render(request, 'developer/developer_form.html', context=context)
 
+@login_required
 def edit_developer(request, developer_id):
     if request.method == 'POST':
         developer = Developer.objects.get(pk=developer_id)
@@ -58,7 +61,7 @@ def edit_developer(request, developer_id):
     }
     return render(request, 'developer/developer_form.html', context=context)
 
-
+@login_required
 def delete_developer(request, developer_id):
     developer = Developer.objects.get(pk=developer_id)
     if request.method == 'POST':

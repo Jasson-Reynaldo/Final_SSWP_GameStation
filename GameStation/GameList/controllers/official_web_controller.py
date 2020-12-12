@@ -6,6 +6,7 @@ from django.urls import reverse
 from GameList.forms.official_web import Official_webForm
 from django.contrib.auth.decorators import login_required
 import requests
+
 def index(request):
     if request.method == 'POST':
         search = request.POST.dict()
@@ -19,6 +20,7 @@ def index(request):
 
     return render(request, 'official_web/index.html', context=data)
 
+@login_required
 def add_official_web(request):
     if request.method == 'POST':
         form = Official_webForm(request.POST)
@@ -33,6 +35,7 @@ def add_official_web(request):
     }
     return render(request, 'official_web/official_web_form.html', context=context)
 
+@login_required
 def edit_official_web(request, official_web_id):
     if request.method == 'POST':
         official_web = Official_web.objects.get(pk=official_web_id)
@@ -50,6 +53,7 @@ def edit_official_web(request, official_web_id):
     }
     return render(request, 'official_web/official_web_form.html', context=context)
 
+@login_required
 def delete_official_web(request, official_web_id):
     official_web = Official_web.objects.get(pk=official_web_id)
     if request.method == 'POST':
