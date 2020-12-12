@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Genre Page</title>{% endblock %}
+
+{% block content %}
+<h3> Genre Page </h3>
+<div class="col-12">
+    <form method="post" action="">
+        {% csrf_token %}
+        <div style="padding: 1%; padding-left: 0%;">
+            <input name="name" type="text" />
+            <button type="submit">Search</button>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3">
+            {% for genre in page_obj %}
+            <div class="col mb-4">
+                <div class="card border-dark h-100">
+                    <div class="card-header text-center bg-dark text-white" style="height: 120px; padding-top: 35px;"><h3>{{ genre }}</h1></div>
+                  <div class="card-body">
+                    <p class="card-text">Description : {{ genre.description }}</p>
+                  </div>
+              </div>
+            </div> 
+            {% endfor %}
+        </div>  
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; First</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+    
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+    
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </form>
+</div>
+{% endblock %}
