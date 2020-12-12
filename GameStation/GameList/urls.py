@@ -1,5 +1,5 @@
 from django.urls import path
-from GameList.controllers import game_controller, platform_controller, genre_controller, publisher_controller, developer_controller, official_web_controller, home_controller
+from GameList.controllers import game_controller, platform_controller, genre_controller, publisher_controller, developer_controller, official_web_controller, home_controller, registration_controller
 
 urlpatterns = [
     path('', home_controller.index, name='home_index'),
@@ -26,5 +26,6 @@ urlpatterns = [
     path('official_web', official_web_controller.index, name='official_web_index'),
     path('official_web/add', official_web_controller.add_official_web, name='add_official_web'),
     path('official_web/edit/<int:official_web_id>', official_web_controller.edit_official_web, name='edit_official_web'),
-    path('official_web/delete/<int:official_web_id>', official_web_controller.delete_official_web, name='delete_official_web'),		
+    path('official_web/delete/<int:official_web_id>', official_web_controller.delete_official_web, name='delete_official_web'),
+    path('register', registration_controller.index, name='register'),		
 ]
