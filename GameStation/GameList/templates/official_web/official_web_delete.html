@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Deleting official web : {{ official_web }}</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Confirm" class="btn btn-success"/>
+    <a href="{% url 'official_web_index' %}" class="btn btn-danger">Cancel</a>
+</form>
+{% endblock %}

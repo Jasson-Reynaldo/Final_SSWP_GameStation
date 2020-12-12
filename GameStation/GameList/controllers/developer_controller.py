@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from GameList.models.developer import Developer
-
+from django.forms.models import model_to_dict
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.urls import reverse
+from GameList.forms.developer import DeveloperForm
+from django.contrib.auth.decorators import login_required
+import requests
 def index(request):
     if request.method == 'POST':
         search = request.POST.dict()
@@ -9,11 +14,11 @@ def index(request):
         developers = Developer.objects.all()
         if name and choice:
             if choice == 'nick_name':
-                developers = developers.filter(nick_name__contains=name)
+                developers = developers.filter(nick_name__icontains=name)
             elif choice == 'first_name':
-                developers = developers.filter(first_name__contains=name)
+                developers = developers.filter(first_name__icontains=name)
             elif choice == 'last_name':
-                developers = developers.filter(last_name__contains=name) 
+                developers = developers.filter(last_name__icontains=name) 
     else:
         developers = Developer.objects.all()  
     data = {
@@ -21,3 +26,45 @@ def index(request):
     }
 
     return render(request, 'developer/index.html', context=data)
+
+def add_developer(request):
+    if request.method == 'POST':
+        form = DeveloperForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            return HttpResponseRedirect(reverse('developer_index'))
+    else:
+        form = DeveloperForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'developer/developer_form.html', context=context)
+
+def edit_developer(request, developer_id):
+    if request.method == 'POST':
+        developer = Developer.objects.get(pk=developer_id)
+        form = DeveloperForm(request.POST, instance=developer)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('developer_index'))
+    else:
+        developer = Developer.objects.get(pk=developer_id)
+        fields = model_to_dict(developer)
+        form = DeveloperForm(initial=fields, instance=developer)
+    context = {
+        'form': form,
+        'type': 'edit',
+    }
+    return render(request, 'developer/developer_form.html', context=context)
+
+
+def delete_developer(request, developer_id):
+    developer = Developer.objects.get(pk=developer_id)
+    if request.method == 'POST':
+        developer.delete()
+        return HttpResponseRedirect(reverse('developer_index'))
+    context = {
+        'developer': developer
+    }
+    return render(request, 'developer/developer_delete.html', context=context)

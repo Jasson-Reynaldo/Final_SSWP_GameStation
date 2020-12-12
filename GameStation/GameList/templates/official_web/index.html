@@ -13,12 +13,14 @@
         <thead class="table-dark">
             <tr>
                 <td>Name</td>
+                <td>Services</td>
             </tr>
         </thead>
         <tbody>
             {% for official_web in official_webs %}
             <tr>
                 <td>{{ official_web.name }}</td>
+                <td><a href="{% url 'edit_official_web' official_web.id %}">Edit</a> - <a href="{% url 'delete_official_web' official_web.id %}">Delete</a></td>
             </tr>
             {% endfor %}
         </tbody>
