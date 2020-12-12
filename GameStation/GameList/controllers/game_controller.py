@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from GameList.models.game import Game
 from django.core.paginator import Paginator
+from django.forms.models import model_to_dict
+from django.urls import reverse
+from django.http import HttpResponse, HttpResponseRedirect
+from GameList.forms.game import GameForm
 
 def index(request):
     if request.method == 'POST':
@@ -44,3 +48,46 @@ def index(request):
         'page_obj': page_obj,
     }
     return render(request, 'game/index.html', data)
+
+def add_game(request):
+    if request.method == 'POST':
+        form = GameForm(request.POST)
+        if form.is_valid():
+            form.save()  # directly save the form
+            return HttpResponseRedirect(reverse('game_index'))
+    else:
+        form = GameForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'game/game_form.html', context=context)
+
+def edit_game(request, game_id):
+    if request.method == 'POST':
+        game = Game.objects.get(pk=game_id)
+        form = GameForm(request.POST, instance=game)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('game_index'))
+    else:
+        game = Game.objects.get(pk=game_id)
+        fields = model_to_dict(game)
+        form = GameForm(initial=fields, instance=game)
+    context = {
+        'form': form,
+        'type': 'edit',
+    }
+    return render(request, 'game/game_form.html', context=context)
+
+def delete_game(request, game_id):
+    game = Game.objects.get(pk=game_id)
+    if request.method == 'POST':
+        game.delete()
+        return HttpResponseRedirect(reverse('game_index'))
+    context = {
+        'game': game,
+    }
+    return render(request, 'game/game_delete.html', context=context)
+
+
