@@ -5,6 +5,7 @@ from django.forms.models import model_to_dict
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from GameList.forms.platform import PlatformForm
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     if request.method == 'POST':
@@ -27,6 +28,7 @@ def index(request):
     }
     return render(request, 'platform/index.html', data)
 
+@login_required
 def add_platform(request):
     if request.method == 'POST':
         form = PlatformForm(request.POST)
@@ -41,6 +43,7 @@ def add_platform(request):
     }
     return render(request, 'platform/platform_form.html', context=context)
 
+@login_required
 def edit_platform(request, platform_id):
     if request.method == 'POST':
         platform = Platform.objects.get(pk=platform_id)
@@ -58,6 +61,7 @@ def edit_platform(request, platform_id):
     }
     return render(request, 'platform/platform_form.html', context=context)
 
+@login_required
 def delete_platform(request, platform_id):
     platform = Platform.objects.get(pk=platform_id)
     if request.method == 'POST':
