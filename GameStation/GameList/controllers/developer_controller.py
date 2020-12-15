@@ -22,10 +22,10 @@ def index(request):
             elif choice == 'last_name':
                 developers = developers.filter(last_name__icontains=name) 
     else:
-        developers = Developer.objects.all()
+        developers = Developer.objects.all()  
     paginator = Paginator(developers, 10)
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)  
+    page_obj = paginator.get_page(page_number)
     data = {
         'page_obj': page_obj,
     }

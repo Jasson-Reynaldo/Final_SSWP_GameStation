@@ -9,6 +9,28 @@
 {% block content %}
 <h3>Official Web Page</h3>
 <div class="col-12">
+    <form id="search-form" method="post" action="">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12">
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                        <select class="form-control" id="choice" name="choice">
+                            <option value="name">Official Web</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                        <input type="text" placeholder="Search..." class="form-control" id="search" name="name"/>
+                    </div>
+                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                        <button type="submit" class="btn btn-base">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <table class="table table-sm table-bordered">
         <thead class="table-dark">
             <tr>
@@ -17,7 +39,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for official_web in official_webs %}
+            {% for official_web in page_obj %}
             <tr>
                 <td>{{ official_web.name }}</td>
                 <td><a href="{% url 'edit_official_web' official_web.id %}">Edit</a> - <a href="{% url 'delete_official_web' official_web.id %}">Delete</a></td>
@@ -25,12 +47,8 @@
             {% endfor %}
         </tbody>
     </table>
-    <form method="post" action="">
-        {% csrf_token %}
-        <input name="name" type="text"/>
-        <button type="submit">Search</button>
-        <a href="{% url 'add_official_web' %}">Add new official web</a>
-        <div class="pagination">
+    <a href="{% url 'add_official_web' %}">Add new official web</a>
+    <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; First</a>
@@ -47,6 +65,5 @@
             {% endif %}
         </span>
     </div>
-    </form>
 </div>
 {% endblock %}
