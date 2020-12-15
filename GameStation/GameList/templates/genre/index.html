@@ -3,15 +3,35 @@
 {% block title %}<title>Genre Page</title>{% endblock %}
 
 {% block content %}
-<h3> Genre Page </h3>
-<div class="col-12">
-    <form method="post" action="">
-        {% csrf_token %}
-        <div style="padding: 1%; padding-left: 0%;">
-            <input name="name" type="text" />
-            <button type="submit">Search</button>
-            <p><a href="{% url 'add_genre' %}">Add Genre</a></p>
+<h3 style="padding: 12px;"> Genre Page </h3>
+<form id="search-form" method="post" action="">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-12">
+            <div class="row no-gutters">
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <select class="form-control" id="choice" name="choice">
+                        <option value="name">Publisher Name</option>
+                        <option value="founder_name">Founder Name</option>
+                        <option value="hq_country">Headquarters Country</option>
+                    </select>
+                </div>
+                <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                    <input type="text" placeholder="Search..." class="form-control" id="search" name="name"/>
+                </div>
+                <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                    <button type="submit" class="btn btn-base">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                </div>
+            </div>
         </div>
+    </div>
+</form>
+<div class="col-12">
+        {% if user.is_authenticated %}  
+        <p><a href="{% url 'add_genre' %}">Add Genre</a></p>
+        {% endif %}
         <div class="row row-cols-1 row-cols-md-3">
             {% for genre in page_obj %}
             <div class="col mb-4">
@@ -21,8 +41,10 @@
                     <p class="card-text">Description : {{ genre.description }}</p>
                   </div>
                   <div class="card-footer">
+                    {% if user.is_authenticated %}
                     <p><a href="{% url 'edit_genre' genre.id %}">Edit</a> - <a href="{% url 'delete_genre' genre.id %}">Delete</a></p>
-                  </div>
+                    {% endif %}
+                </div>
               </div>
             </div> 
             {% endfor %}
@@ -44,6 +66,5 @@
                 {% endif %}
             </span>
         </div>
-    </form>
 </div>
 {% endblock %}

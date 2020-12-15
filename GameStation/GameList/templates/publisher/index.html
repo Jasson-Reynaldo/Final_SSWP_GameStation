@@ -3,8 +3,7 @@
 {% block title %}<title>Platform Page</title>{% endblock %}
 
 {% block content %}
-
-
+<h3 style="padding: 12px;"> Publisher Page </h3>
 <form id="search-form" method="post" action="">
     {% csrf_token %}
     <div class="row">
@@ -30,9 +29,6 @@
     </div>
 </form>
 
-
-
-<h3> Publisher Page </h3>
 <div class="col-12">
     <table class="table table-striped table-sm table-bordered">
         <thead class="table-dark">
@@ -42,7 +38,9 @@
                 <td>Founded Date</td>
                 <td>HQ City</td>
                 <td>HQ Country</td>
+                {% if user.is_authenticated %}
                 <td>Action</td>
+                {% endif %}
             </tr>
         </thead>
         <div class="row row-cols-6 row-cols-md-2">
@@ -53,13 +51,17 @@
                 <td>{{ publisher.founded_date }}</td>
                 <td>{{ publisher.HQ_city }}</td>
                 <td>{{ publisher.HQ_country }}</td>
+                {% if user.is_authenticated %}
                 <td><a href="{% url 'edit_publisher' publisher.id %}">Edit</a> - <a href="{% url 'delete_publisher' publisher.id %}">Delete</a></td>
+                {% endif %}
             </tr>
             {% endfor %}
         </div>
        
     </table>
+    {% if user.is_authenticated %}
     <p><a href="{% url 'add_publisher' %}">Add Publisher</a></p>
+    {% endif %}
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}

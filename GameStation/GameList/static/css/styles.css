@@ -50,10 +50,12 @@ body{
     color:white;
 }
 
-.search-form {
-    width: 80%;
+ #search-form {
+    width: 100%;
     margin: 0 auto;
     margin-top: 1rem;
+    padding-left: 12px;
+    padding-bottom: 5px;
   }
   
   .search-form input {
