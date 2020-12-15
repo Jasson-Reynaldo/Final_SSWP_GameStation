@@ -4,6 +4,7 @@ from django.forms.models import model_to_dict
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from GameList.forms.official_web import Official_webForm
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 import requests
 
@@ -13,9 +14,12 @@ def index(request):
         name = search['name']
         official_webs = Official_web.objects.filter(name__icontains=name)
     else:
-        official_webs = Official_web.objects.all()  
+        official_webs = Official_web.objects.all()
+    paginator = Paginator(official_webs, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)   
     data = {
-        'official_webs': official_webs,
+        'page_obj': page_obj,
     }
 
     return render(request, 'official_web/index.html', context=data)
