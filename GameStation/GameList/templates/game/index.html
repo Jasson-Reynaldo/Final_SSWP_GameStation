@@ -3,7 +3,7 @@
 {% block title %}<title>Game Page</title>{% endblock %}
 
 {% block content %}
-<h3 style="text-align: center;"> Game Page </h3>
+<h3 style="padding:12px;padding-left: 24px;"> Game Page </h3>
 <div class="col-12">
     <form method="post" action="">
         {% csrf_token %}
@@ -16,27 +16,55 @@
             </thead>
             <tbody>
                 <td>
-                    <select name="choice_name" id="choice_name">
-                        <option value="title">Game Title</option>
-                        <option value="genre">Genre</option>
-                        <option value="developer">Game Developer</option>
-                        <option value="publisher">Game Publisher</option>
-                        <option value="official_web">Official Web</option>
-                        <option value="platform">Platforms</option>
-                    </select>
-                    <input name="name" type="text" />
-                    <button type="submit">Search</button>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row no-gutters">
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <select class="form-control" name="choice_name" id="choice_name">
+                                        <option value="title">Game Title</option>
+                                        <option value="genre">Genre</option>
+                                        <option value="developer">Game Developer</option>
+                                        <option value="publisher">Game Publisher</option>
+                                        <option value="official_web">Official Web</option>
+                                        <option value="platform">Platforms</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                                    <input type="text" placeholder="Search..." class="form-control" id="search" name="name"/>
+                                </div>
+                                <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                                    <button type="submit" class="btn btn-base">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <select name="choice_price" id="choice_price">
-                        <option value="equal">Equal</option>
-                        <option value="less_than">Less Than</option>
-                        <option value="less_than_equal">Less Than or Equal</option>
-                        <option value="greater_than">More Than</option>
-                        <option value="greater_than_equal">More Than or Equal</option>
-                    </select>
-                    <input name="price" type="number" />
-                    <button type="submit">Search</button>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row no-gutters">
+                                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                    <select class="form-control" name="choice_price" id="choice_price">
+                                        <option value="equal">Equal</option>
+                                        <option value="less_than">Less Than</option>
+                                        <option value="less_than_equal">Less Than or Equal</option>
+                                        <option value="greater_than">More Than</option>
+                                        <option value="greater_than_equal">More Than or Equal</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                                    <input type="text" placeholder="Search..." class="form-control" id="search" name="price"/>
+                                </div>
+                                <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                                    <button type="submit" class="btn btn-base">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tbody>
         </table>
