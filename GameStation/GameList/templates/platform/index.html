@@ -3,7 +3,7 @@
 {% block title %}<title>Platform Page</title>{% endblock %}
 
 {% block content %}
-<h3> Platform Page </h3>
+<h3 style="text-align: center;"> Platform Page </h3>
 <div class="col-12">
     <form method="post" action="">
         {% csrf_token %}
@@ -21,7 +21,9 @@
                 <tr>
                     <td>Platform Name</td>
                     <td>Creator Name</td>
-                    <td>Services</td>
+                    {% if user.is_authenticated %}  
+                        <td>Services</td>
+                    {% endif %} 
                 </tr>
             </thead>
             <div class="row row-cols-1 row-cols-md-2">
@@ -29,7 +31,9 @@
                 <tr>
                     <td>{{ platform }}</td> 
                     <td>{{ platform.creator }}</td>
-                    <td> <a href="{% url 'edit_platform' platform.id %}">Edit</a> - <a href="{% url 'delete_platform' platform.id %}">delete</a>  </td>
+                    {% if user.is_authenticated %}  
+                        <td> <a href="{% url 'edit_platform' platform.id %}">Edit</a> - <a href="{% url 'delete_platform' platform.id %}">delete</a>  </td>
+                    {% endif %}   
                 </tr>
                 {% endfor %}
             </div>
