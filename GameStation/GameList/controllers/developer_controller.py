@@ -4,6 +4,7 @@ from django.forms.models import model_to_dict
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from GameList.forms.developer import DeveloperForm
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 import requests
 
@@ -21,9 +22,12 @@ def index(request):
             elif choice == 'last_name':
                 developers = developers.filter(last_name__icontains=name) 
     else:
-        developers = Developer.objects.all()  
+        developers = Developer.objects.all()
+    paginator = Paginator(developers, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)  
     data = {
-        'developers': developers,
+        'page_obj': page_obj,
     }
 
     return render(request, 'developer/index.html', context=data)

@@ -3,7 +3,7 @@
 {% block title %}<title>Game Page</title>{% endblock %}
 
 {% block content %}
-<h3> Game Page </h3>
+<h3 style="text-align: center;"> Game Page </h3>
 <div class="col-12">
     <form method="post" action="">
         {% csrf_token %}
@@ -43,24 +43,32 @@
             <div class="row row-cols-1 row-cols-md-2">
                 {% for game in page_obj %}
                 <div class="col mb-4">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">{{ game }}</h5>
-                        <p class="card-text">Genre : {{ game.genre.all|join:' | ' }}</p>
-                        <p class="card-text">Game Developer : {{ game.developer }}</p>
-                        <p class="card-text">Game Publisher : {{ game.publisher }}</p>
-                        <p class="card-text">Official Web : {{ game.offical_web }}</p>
-                        <p class="card-text">Price : {{ game.price }}</p>
-                        <p class="card-text">Supporting Platform : {{ game.platform.all|join:' | ' }}</p>
-                        <p class="card-text">Rating : {{ game.rating }}</p>
-                        <a href="{% url 'edit_game' game.id %}">Edit</a> - <a href="{% url 'delete_game' game.id %}">Delete</a>
-                      </div>
+                    <div class="card border-dark h-100">
+                        <div class="card-header text-center bg-dark text-white" style="height: 120px; padding-top: 35px;">
+                            <h3 class="card-title">{{ game }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Genre : {{ game.genre.all|join:' | ' }}</p>
+                            <p class="card-text">Game Developer : {{ game.developer }}</p>
+                            <p class="card-text">Game Publisher : {{ game.publisher }}</p>
+                            <p class="card-text">Official Web : {{ game.offical_web }}</p>
+                            <p class="card-text">Price : {{ game.price }}</p>
+                            <p class="card-text">Supporting Platform : {{ game.platform.all|join:' | ' }}</p>
+                            <p class="card-text">Rating : {{ game.rating }}</p>
+                        </div>
+                        {% if user.is_authenticated %}  
+                        <div class="card-footer">
+                            <a href="{% url 'edit_game' game.id %}">Edit</a> - <a href="{% url 'delete_game' game.id %}">Delete</a>
+                        </div>
+                        {% endif %}   
                     </div>
-                  </div>
+                </div>
                 {% endfor %}
             </div>
         <div>
+            {% if user.is_authenticated %}  
             <a href="{% url 'add_game' %}">Add new Games</a>
+            {% endif %}   
         </div>
         <div class="pagination">
             <span class="step-links">
