@@ -13,7 +13,29 @@
 
 <body>
     <div id="header">
+
         <div class="jumbotron jumbotron-fluid bg-dark text-white jumbotop">
+          <nav class="navbar bg-transparent navlogin">
+            <p class="navbar-brand" href="#">
+              <img src="#" width="30" height="30" class="d-inline-block align-top" alt="" loading="">
+              {% if user.is_authenticated %}
+                Welcome {{ user.get_username }}
+              {% else %}
+                Welcome Guest
+              {% endif %}     
+            </p>
+            <span class="navbar-text">
+              {% if user.is_authenticated %}
+              <a href="{% url 'logout' %}?next={{ request.path }}">
+                <button type="button" class="btn btn-outline-warning loginbutton">Logout</button>
+              </a>
+              {% else %}
+              <a href="{% url 'login' %}?next={{ request.path }}">
+                <button type="button" class="btn btn-outline-warning loginbutton">Login</button>
+              </a>
+              {% endif %}
+            </span>
+          </nav>
             <div class="container text-center">
               <h1 class="display-4">
                 <a class="navbar-brand text-white" href="{% url 'home_index' %}">
@@ -23,25 +45,25 @@
             </div>
         </div>
         <ul class="nav justify-content-center bg-dark navtop">
-          <li class="nav-item">
+          <li class="nav-item navtopmini">
             <a class="nav-link text-white" href="{% url 'home_index' %}">Home</a>
           </li>
-            <li class="nav-item">
+            <li class="nav-item navtopmini">
               <a class="nav-link text-white" href="{% url 'game_index' %}">Game</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navtopmini">
               <a class="nav-link text-white" href="{% url 'genre_index' %}">Genre</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navtopmini">
               <a class="nav-link text-white" href="{% url 'developer_index'%}">Developer</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navtopmini">
                 <a class="nav-link text-white" href="{% url 'publisher_index' %}">Publisher</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navtopmini">
                 <a class="nav-link text-white" href="{% url 'platform_index' %}">Platform</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item navtopmini">
                 <a class="nav-link text-white" href="{% url 'official_web_index' %}">Official Web</a>
             </li>
 

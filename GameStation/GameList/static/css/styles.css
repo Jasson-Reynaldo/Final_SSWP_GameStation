@@ -1,8 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Niramit&family=Pacifico&display=swap');
+
+
+body{
+    background-color: #dee2e6;
+}
+
 .jumbotop{
     margin-bottom: 0px;
-    padding: 15px;
-    height: 160px;
+    padding: 10px;
+    height: 200px;
 }
 .navtop{
     font-family: 'Niramit', sans-serif;
@@ -12,8 +18,34 @@
     font-family: 'Niramit', sans-serif;
     line-height: 1.5;
     margin-bottom: 0px;
+    padding-top: 0px;
 }
 
 .lead{
     line-height: 0;
+}
+
+.navtopmini{
+    border: 5px solid #343a40;
+}
+
+.navtopmini:hover{
+    border-bottom: 5px solid #f8c963;
+}
+
+.navlogin{
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+    height: 55px;
+}
+
+.loginbutton{
+    font-family: 'Niramit', sans-serif;
+    border-color: white;
+    color: white;
+    width: 80px;
+}
+
+.loginbutton:hover{
+    color:white;
 }

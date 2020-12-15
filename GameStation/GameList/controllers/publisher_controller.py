@@ -5,6 +5,7 @@ from GameList.models.publisher import Publisher
 from GameList.forms.publisher import PublisherForm
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     if request.method == 'POST':
@@ -29,6 +30,7 @@ def index(request):
     }
     return render(request, 'publisher/index.html', data)
 
+@login_required
 def add_publisher(request):
     if request.method == 'POST':
         form = PublisherForm(request.POST)
@@ -43,6 +45,7 @@ def add_publisher(request):
     }
     return render(request, 'publisher/publisher_form.html', context=context)
 
+@login_required
 def edit_publisher(request, publisher_id):
     if request.method == 'POST':
         publisher = Publisher.objects.get(pk=publisher_id)
@@ -60,6 +63,7 @@ def edit_publisher(request, publisher_id):
     }
     return render(request, 'publisher/publisher_form.html', context=context)
 
+@login_required
 def delete_publisher(request, publisher_id):
     publisher = Publisher.objects.get(pk=publisher_id)
     if request.method == 'POST':
