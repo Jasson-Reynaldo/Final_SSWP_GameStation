@@ -7,11 +7,6 @@
 {% endblock %}
 
 {% block content %}
-{% if error_message %}
-<script>
-    alert('{{ error_message }}');    
-</script>
-{% endif %}
 <h2 style="text-align: center;">
     Registration Form
 </h2>
@@ -44,6 +39,9 @@
                         <input type="password" name="password"/>
                     </div>
                 </div>
+                {% if error_message %}  
+                <p style="color: red;">*Sorry, {{ error_message }}</p>
+                {% endif %}
                 <input type="submit" value="Register"/>
             </form>
         </div>

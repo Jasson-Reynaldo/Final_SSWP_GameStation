@@ -9,6 +9,30 @@
 {% block content %}
 <h3>Developer Page</h3>
 <div class="col-12">
+    <form method="post" action="">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12">
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                        <select class="form-control" id="choice" name="choice">
+                            <option value="nick_name">Nickname</option>
+                            <option value="first_name">First Name</option>
+                            <option value="last_name">Last_name</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                        <input type="text" placeholder="Search..." class="form-control" id="search" name="name"/>
+                    </div>
+                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                        <button type="submit" class="btn btn-base">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
     <table class="table table-striped table-sm table-bordered">
         <thead class="table-dark">
             <tr>
@@ -20,7 +44,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for developer in developers %}
+            {% for developer in page_obj %}
             <tr>
                 <td>{{ developer.nick_name }}</td>
                 <td>{{ developer.first_name }}</td>
@@ -31,19 +55,8 @@
             {% endfor %}
         </tbody>
     </table>
-    <form method="post" action="">
-        {% csrf_token %}
-        <div>
-            <select name="choice" id="choice">
-                <option value="nick_name">Nickname</option>
-                <option value="first_name">First Name</option>
-                <option value="last_name">Last Name</option>
-            </select>
-            <input name="name" type="text" />
-            <button type="submit">Search</button>
-            <a href="{% url 'add_developer' %}">Add new developer</a>
-        </div>
-        <div class="pagination">
+    <a href="{% url 'add_developer' %}">Add new developer</a>
+    <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; First</a>
@@ -60,6 +73,5 @@
             {% endif %}
         </span>
     </div>
-    </form>
 </div>
 {% endblock %}

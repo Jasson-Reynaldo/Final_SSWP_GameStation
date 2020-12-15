@@ -5,18 +5,19 @@ from django.shortcuts import render
 from django.conf import settings
 
 def index(request):
-    msg = ''
+    error_message = ''
     if request.method == 'POST':
         req = request.POST.dict()
         username = req['username']
         password = req['password']
-        email = req['email']  
+        email = req['email']
         try: 
             user = User.objects.get(username=username)
             error_message = 'Username is already registered, please input another username'
         except User.DoesNotExist: 
             user = User.objects.create_user(username, email, password) 
             user.save()
+            error_message = ' '
             send_mail(
                 'Registration Successful',
                 'Welcome Gamers to GameStation!',
@@ -24,7 +25,7 @@ def index(request):
                 [email],
                 fail_silently=True,
             )
-            return HttpResponseRedirect('account/login')
+            return HttpResponseRedirect('accounts/login')
     data = {
         'error_message': error_message,
     }
