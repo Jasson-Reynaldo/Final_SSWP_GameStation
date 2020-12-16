@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}<title>Platform Page</title>{% endblock %}
+{% block title %}<title>Publisher Page</title>{% endblock %}
 
 {% block content %}
 <h3 style="padding: 12px;"> Publisher Page </h3>
@@ -8,6 +8,7 @@
 <a href="{% url 'add_publisher' %}" style="padding: 12px;">
     <button type="button" class="btn btn-dark">Add Publisher</button></a>
 {% endif %}
+
 <form id="search-form" method="post" action="">
     {% csrf_token %}
     <div class="row">

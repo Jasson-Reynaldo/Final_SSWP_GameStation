@@ -2,9 +2,10 @@
 
 {% block content %}
 
-<div class="col-12">
-    <div class="row text-center">
+<div class="col-12 loginform">
+    <div class="row text-center text-white">
         <div class="col-12">
+            <h3>Login</h3>
             {% if form.errors %}
             {% if user_exists_error %}
             <p>{{ user_exists_error }}</p>
@@ -17,17 +18,15 @@
             {% if user.is_authenticated %}
             <p>Your account doesn't have access to this page. To proceed,
                 please login with an account that has access.</p>
-            {% else %}
-            <p>Please login to see this page.</p>
             {% endif %}
             {% endif %}
         </div>
     </div>
-    <div class="row text-center">
-        <div class="col-12 text-center">
+    <div class="row text-center logininput">
+        <div class="col-12 text-center text-white">
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
-                <div class="row">
+                <div class="row inputpart">
                     <div class="col-6 text-right">
                         {{ form.username.label_tag }}
                     </div>
@@ -35,7 +34,7 @@
                         {{ form.username }}
                     </div>
                 </div>
-                <div class="row">
+                <div class="row inputpart"> 
                     <div class="col-6 text-right">
                         {{ form.password.label_tag }}
                     </div>
@@ -43,10 +42,10 @@
                         {{ form.password }}
                     </div>
                 </div>
-                <input type="submit" value="login" />
+                <input class="buttonlogin" type="submit" value="login" />
                 <input type="hidden" name="next" value="{{ next }}" />
             </form>
-            <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+            <p class="loginnote">Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
         </div>
     </div>
 </div>

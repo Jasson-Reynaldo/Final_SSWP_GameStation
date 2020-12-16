@@ -16,8 +16,8 @@
 
         <div class="jumbotron jumbotron-fluid bg-dark text-white jumbotop">
           <nav class="navbar bg-transparent navlogin">
-            <p class="navbar-brand" href="#">
-              <img src="#" width="30" height="30" class="d-inline-block align-top" alt="" loading="">
+            <p class="navbar-brand">
+              <img src={% static 'images/User.png' %} width="30" height="30" class="d-inline-block align-top" alt="" loading="">
               {% if user.is_authenticated %}
                 Welcome {{ user.get_username }}
               {% else %}
