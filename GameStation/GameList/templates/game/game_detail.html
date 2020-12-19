@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Game Page</title>{% endblock %}
+
+{% block content %}
+    <div class="col mb-4">
+        <div class="card border-dark h-100" style="margin-top: 25px;">
+            <div class="card-header text-center bg-dark text-white" style="height: 120px; padding-top:35px;">
+                <h3 class="card-title">{{ games }}</h3>
+            </div>
+            <div>
+                <img style="width: 100%;height:300px;" src="{{ response.0.background_image }}">
+            </div>
+            <div>
+                <div class="card-body" style="float: left;">
+                    <p class="card-text">Genre : {{ games.genre.all|join:' | ' }}</p>
+                    <p class="card-text">Game Developer : {{ games.developer }}</p>
+                    <p class="card-text">Game Publisher : {{ games.publisher }}</p>
+                    <p class="card-text">Official Web : {{ games.offical_web }}</p>
+                    <p class="card-text">Price : {{ games.price }}</p>
+                    <p class="card-text">Supporting Platform : {{ games.platform.all|join:' | ' }}</p>
+                    <p class="card-text">Date Released : {{ response.0.released }}</p>
+                    <p class="card-text">Rating : {{ response.0.rating }}</p>
+                </div>
+        </div>
+    </div>
+{% endblock %}
+
+

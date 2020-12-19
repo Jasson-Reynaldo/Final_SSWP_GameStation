@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from GameList.forms.game import GameForm
 from django.contrib.auth.decorators import login_required
+import requests
 
 def index(request):
     if request.method == 'POST':
@@ -15,6 +16,7 @@ def index(request):
         choice_price = search['choice_price']
         price = search['price']
         games = Game.objects.all()
+
         if choice_name and name:
             if choice_name == 'title':
                 games = games.filter(title__icontains=name)
@@ -42,13 +44,28 @@ def index(request):
                 games = games.filter(price__gte=price)             
     else:
         games = Game.objects.all()
-    paginator = Paginator(games, 4)
+    paginator = Paginator(games, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     data = {
         'page_obj': page_obj,
     }
     return render(request, 'game/index.html', data)
+
+def detail_game(request, game_id):
+    if request.method == 'POST':
+        games = Game.objects.get(pk=game_id)
+        response = requests.get('https://api.rawg.io/api/games?search=' + games.title).json()
+        response = response["results"]
+    else:
+        games = Game.objects.get(pk=game_id)
+        response = requests.get('https://api.rawg.io/api/games?search=' + games.title).json()
+        response = response["results"]
+    context = {
+        'games' : games,
+        'response' : response,
+    }
+    return render(request, 'game/game_detail.html', context=context)
 
 @login_required
 def add_game(request):
