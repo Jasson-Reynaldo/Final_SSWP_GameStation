@@ -12,29 +12,29 @@
 <a href="{% url 'add_official_web' %}" style="padding: 12px;">
     <button type="button" class="btn btn-dark">Add Official Web</button></a>
 {% endif %}
-<div class="col-12">
     <form id="search-form" method="post" action="">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-12">
-                <div class="row no-gutters">
-                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                        <select class="form-control" id="choice" name="choice">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-12">
+            <div class="row no-gutters">
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <select class="form-control" id="choice" name="choice">
                             <option value="name">Official Web</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
-                        <input type="text" placeholder="Search..." class="form-control" id="search" name="name"/>
-                    </div>
-                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
-                        <button type="submit" class="btn btn-base">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                        </button>
-                    </div>
+                    </select>
+                </div>
+                <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                    <input type="text" placeholder="Search..." class="form-control" id="search" name="name"/>
+                </div>
+                <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                    <button type="submit" class="btn btn-base">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
     </form>
+<div class="col-12">
     <table class="table table-striped table-sm table-bordered">
         <thead class="table-dark">
             <tr>
