@@ -5,8 +5,8 @@
 {% block content %}
 <h3 style="padding: 12px;"> Genre Page </h3>
 {% if user.is_authenticated %}
-<a href="{% url 'add_publisher' %}" style="padding: 12px;">
-    <button type="button" class="btn btn-dark">Add Publisher</button></a>
+<a href="{% url 'add_genre' %}" style="padding: 12px;">
+    <button type="button" class="btn btn-dark">Add Genre</button></a>
 {% endif %}
 <form id="search-form" method="post" action="">
     {% csrf_token %}
@@ -15,9 +15,7 @@
             <div class="row no-gutters">
                 <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                     <select class="form-control" id="choice" name="choice">
-                        <option value="name">Publisher Name</option>
-                        <option value="founder_name">Founder Name</option>
-                        <option value="hq_country">Headquarters Country</option>
+                        <option value="name">Genre Name</option>
                     </select>
                 </div>
                 <div class="col-lg-8 col-md-6 col-sm-12 p-0">

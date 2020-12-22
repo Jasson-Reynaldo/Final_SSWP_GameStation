@@ -21,7 +21,7 @@
                                 <label for="username">Username</label>
                             </div>
                             <div class="col-6 text-left">
-                                <input type="text" name="username"/>
+                                <input type="text" name="username" required/>
                             </div>
                         </div>
                         <div class="row inputpart">
@@ -29,7 +29,7 @@
                                 <label for="email">E-Mail</label>
                             </div>
                             <div class="col-6 text-left">
-                                <input type="text" name="email"/>
+                                <input type="text" name="email" required/>
                             </div>
                         </div>
                         <div class="row inputpart">
@@ -37,11 +37,11 @@
                                 <label for="password">Password</label>
                             </div>
                             <div class="col-6 text-left">
-                                <input type="password" name="password"/>
+                                <input type="password" name="password" required/>
                             </div>
                         </div>
                         {% if error_message %}  
-                        <p style="color: red;">*Sorry, {{ error_message }}</p>
+                        <p style="color: red;text-align: center;">*Sorry, {{ error_message }}</p>
                         {% endif %}
                         <input class="buttonlogin" type="submit" value="Register"/>
                     </form>
