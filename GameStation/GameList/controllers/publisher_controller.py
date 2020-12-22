@@ -15,14 +15,14 @@ def index(request):
         publishers = Publisher.objects.all()
         if name and choice:
             if choice == 'name':
-                publishers = publishers.filter(name__contains=name)
+                publishers = publishers.filter(name__icontains=name)
             elif choice == 'founder_name':
-                publishers = publishers.filter(founder_name__contains=name)
+                publishers = publishers.filter(founder_name__icontains=name)
             elif choice == 'hq_country':
-                publishers = publishers.filter(HQ_country__contains=name)
+                publishers = publishers.filter(HQ_country__icontains=name)
     else:
         publishers = Publisher.objects.all()
-    paginator = Paginator(publishers, 10)
+    paginator = Paginator(publishers, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     data = {

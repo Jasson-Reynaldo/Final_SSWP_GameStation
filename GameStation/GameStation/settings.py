@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Game_Data',
         'USER': 'Django',
-        'PASSWORD': '102938',
+        'PASSWORD': 'Django',
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
