@@ -75,10 +75,10 @@
         </table>
             <div class="row row-cols-1 row-cols-md-2">
                 {% for game in page_obj %}
-                <div class="col mb-4">
-                    <a href="{% url 'detail_game' game.id %}" value="{{ game }}">
+                <div class="col mb-4" >
                     <div class="card border-dark h-100">
-                        <div class="card-header text-center bg-dark text-white" style="height: 120px; padding-top: 35px;">
+                    <a href="{% url 'detail_game' game.id %}" value="{{ game }}" class="gamecard">
+                        <div class="card-header text-center gamecard" style="height: 120px; padding-top: 35px;">
                             <h3 class="card-title">{{ game }}</h3>
                         </div>
                     </a>

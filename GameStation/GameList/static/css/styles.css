@@ -131,3 +131,17 @@ body{
     margin-left: 80px;
     margin-bottom: 10px;
   }
+
+  a.gamecard:hover{
+    text-decoration: none;
+  }
+
+  .gamecard:hover{
+    background-color:#242423;
+    color: #f8c963;
+  }
+
+  .gamecard{
+    background-color:  #343a40;
+    color: white;
+  }
