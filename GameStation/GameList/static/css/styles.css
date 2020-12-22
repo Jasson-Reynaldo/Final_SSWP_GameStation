@@ -5,6 +5,10 @@ body{
     background-color: #dee2e6;
 }
 
+.bg-darkcustom{
+    background-color: #242423;
+}
+
 .jumbotop{
     margin-bottom: 0px;
     padding: 10px;
@@ -26,7 +30,7 @@ body{
 }
 
 .navtopmini{
-    border: 5px solid #343a40;
+    border: 5px solid #242423;
 }
 
 .navtopmini:hover{
@@ -49,7 +53,7 @@ body{
 .loginbutton:hover{
     color:white;
 }
-
+ 
  #search-form {
     width: 100%;
     margin: 0 auto;
