@@ -3,7 +3,7 @@
 {% block title %}<title>Platform Page</title>{% endblock %}
 
 {% block content %}
-<h3 style="padding: 12px;"> Platform Page </h3>
+<h3 style="padding: 12px;padding-left: 24px;"> Platform Page </h3>
 {% if user.is_authenticated %}  
 <a href="{% url 'add_platform' %}" style="padding:12px;padding-left: 24px;">
     <button type="button" class="btn btn-dark">Add Platform</button>
