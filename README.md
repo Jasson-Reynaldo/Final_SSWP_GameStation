@@ -1,2 +1,9 @@
 # Final_SSWP_GameStation
-Final SSWP-Game Station by Francis, Jasson, and Renaldo
+
+Server-Side Internet Programming
+Final Exam Group Project
+
+Group Members:
+- Francis Dwiputra Abdikesuma
+- Jasson Reynaldo
+- Renaldo
