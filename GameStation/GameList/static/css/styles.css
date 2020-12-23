@@ -2,6 +2,7 @@
 
 
 body{
+    height: 100%;
     background-color: #dee2e6;
 }
 
@@ -53,6 +54,10 @@ body{
 .loginbutton:hover{
     color:white;
 }
+
+.content{
+  min-height: 412px;
+  }
  
  #search-form {
     width: 100%;
@@ -145,3 +150,16 @@ body{
     background-color:  #343a40;
     color: white;
   }
+
+  .Footer{
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    background-color:  #242423;
+    font-family: 'Niramit', sans-serif;
+    bottom: 0;
+    color: white;
+    position: relative;
+    padding-top: 7px;
+  }
+

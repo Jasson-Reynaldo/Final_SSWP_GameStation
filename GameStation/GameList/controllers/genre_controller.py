@@ -11,7 +11,13 @@ def index(request):
     if request.method == 'POST':
         search = request.POST.dict()
         name = search['name']
-        genres = Genre.objects.filter(name__icontains=name)
+        choice = search['choice']
+        genres = Genre.objects.all()
+        if name and choice:
+            if choice == 'name':
+                genres = genres.filter(name__icontains=name)
+            elif choice == 'description':
+                genres = genres.filter(description__icontains=name)  
     else:
         genres = Genre.objects.all()
     paginator = Paginator(genres, 6)
